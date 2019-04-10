@@ -3,46 +3,66 @@
 
 <head>
   <meta charset="utf-8">
+
   <style>
+    .slider-container {
+      margin-left: 20px;
+      width: 50%;
+    }
+
+    .slider {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      padding: 0;
+      text-align: center;
+      list-style: none;
+      width: 102%;
+    }
 
     body {
+      font-family: 'Avenir Next';
       background-color: white;
       margin: 0px;
       padding: 0px;
     }
 
-    svg{
-      background-color:rgb(255, 255, 255);
+    svg {
+      background-color: rgb(255, 255, 255);
     }
-    #Intro{
+
+    #Intro {
       padding: 15%;
       text-align: center;
     }
-    h1{
-      font-family:'Avenir Next';
+
+    h1 {
       font-size: 2em;
     }
-    h2{
-      font-family:'Avenir Next';
+
+    h2 {
       font-size: 1.0em;
     }
 
-    p{
-      font-family:'Avenir Next';
+    p {
       font-size: 1.0em;
       font-size: 18px;
       text-align: center;
-      padding-bottom:30px;
+      padding-bottom: 30px;
     }
 
-    em{
+    em {
       font-style: normal;
       font-weight: bolder;
-      padding-bottom:50px;
-      margin-bottom:20px;
+      padding-bottom: 50px;
+      margin-bottom: 20px;
     }
 
-    #mapContainer{
+    #mapContainer {
       position: relative;
       max-width: 100%;
       background-color: rgb(23, 52, 77);
@@ -50,18 +70,18 @@
       height: 600px;
     }
 
-    svg.mapSVG{
+    svg.mapSVG {
       background-color: rgb(23, 52, 77);
     }
 
-    #map{
+    #map {
       /* opacity: .8; */
       max-width: 50%;
       position: absolute;
 
     }
 
-    #mapText{
+    #mapText {
       position: absolute;
       text-align: center;
       float: right;
@@ -74,7 +94,7 @@
       color: white;
     }
 
-    #legend{
+    #legend {
       position: absolute;
       text-align: left;
       float: right;
@@ -89,25 +109,47 @@
 
 
     .key-dot {
-    display: inline-block;
-    height: 10px;
-    margin-right: .5em;
-    width: 20px;}
+      display: inline-block;
+      height: 10px;
+      margin-right: .5em;
+      width: 20px;
+    }
 
-    .first { background: #1e90ff; align:left;}
-    .second{ background: #69a2fb;}
-    .third { background: #90b3f7;}
-    .forth { background: #b0c6f4;}
-    .fifth { background: #cdd9f1;}
-    .sixth { background: #e7edf1;}
-    .seventh { background: #ffffff;}
+    .first {
+      background: #1e90ff;
+      align: left;
+    }
 
-    .happiness{
-    margin:0;
-    text-align: left;
-    border:0;
-    padding:0;
-  }
+    .second {
+      background: #69a2fb;
+    }
+
+    .third {
+      background: #90b3f7;
+    }
+
+    .forth {
+      background: #b0c6f4;
+    }
+
+    .fifth {
+      background: #cdd9f1;
+    }
+
+    .sixth {
+      background: #e7edf1;
+    }
+
+    .seventh {
+      background: #ffffff;
+    }
+
+    .happiness {
+      margin: 0;
+      text-align: left;
+      border: 0;
+      padding: 0;
+    }
 
     .gridlines line {
       stroke: lightgrey;
@@ -124,13 +166,13 @@
       shape-rendering: crispEdges;
     }
 
-    .label{
-      font-style:italic;
+    .label {
+      font-style: italic;
       font-size: 16px;
     }
 
     .boundary {
-      stroke:rgb(23, 52, 77);
+      stroke: rgb(23, 52, 77);
       stroke-width: .4px;
     }
 
@@ -138,48 +180,49 @@
       display: none;
     }
 
-    #plotcontainer{
-      display:flex;
+    #plotcontainer {
+      display: flex;
       margin-top: 100px;
-      max-width:1300;
+      max-width: 1300;
     }
 
-    #plot3{
+    #plot3 {
       margin-top: 70px;
-      margin-left:10%;
-      margin-right:auto;
+      margin-left: 10%;
+      margin-right: auto;
       text-align: center;
     }
 
-    #plot3 p{
-      padding-left:5%;
-      padding-right:10%;
-      margin-bottom:0;
-      padding-bottom:0;
+    #plot3 p {
+      padding-left: 5%;
+      padding-right: 10%;
+      margin-bottom: 0;
+      padding-bottom: 0;
     }
 
-    #plot1{
-      margin:20px;
-      flex-grow:1;
+    #plot1 {
+      margin: 20px;
+      flex-grow: 1;
     }
 
-    #plot2{
-      margin:20px;
-      flex-grow:1;
+    #plot2 {
+      margin: 20px;
+      flex-grow: 1;
     }
 
-    #plot2 p{
-      margin-bottom:45px;
+    #plot2 p {
+      margin-bottom: 45px;
     }
 
-    #averageDonut{
+    #averageDonut {
       margin-top: 40px;
       padding: 5%;
       position: relative;
       float: left;
 
     }
-    .donutGraphs{
+
+    .donutGraphs {
       padding: 20%;
       padding-top: 0px;
       align-content: right;
@@ -190,7 +233,7 @@
       /* margin-left: 50px; */
     }
 
-    #colorLegendPie{
+    #colorLegendPie {
       width: 200px;
       height: 300px;
       position: relative;
@@ -199,129 +242,159 @@
       margin-top: 20px;
     }
 
-    #colorBox{
+    #colorBox {
       width: 20px;
       height: 20px;
       position: relative;
       float: left;
     }
 
-    p#colorlabel{
+    p#colorlabel {
       position: relative;
       float: right;
     }
 
-    .overrideText{
-      text-align: left; 
+    .overrideText {
+      text-align: left;
       font-size: 1em;
       padding-left: 40px;
       padding-bottom: 0px;
     }
 
-    #titleText{
+    #titleText {
       align-content: center;
       text-align: center;
       padding-top: 40px;
     }
+
     .flex-container {
       display: flex;
       max-width: 100%;
       padding-left: 100px;
       margin-bottom: 10%;
     }
-    #Norway, #Jamaica, #Burundi{
+
+    #Norway,
+    #Jamaica,
+    #Burundi {
       width: 33%;
       align-content: center;
       margin-top: 5%;
     }
 
-    #plot3 p{
-      padding-left:5%;
-      padding-right:10%;
-      margin-bottom:0;
-      padding-bottom:0;
+    #plot3 p {
+      padding-left: 5%;
+      padding-right: 10%;
+      margin-bottom: 0;
+      padding-bottom: 0;
     }
 
-    #plot1{
-      margin:20px;
-      flex-grow:1;
+    #plot1 {
+      margin: 20px;
+      flex-grow: 1;
     }
 
-    #plot2{
-      margin:20px;
-      flex-grow:1;
+    #plot2 {
+      margin: 20px;
+      flex-grow: 1;
     }
 
-    #plot2 p{
-      margin-bottom:45px;
+    #plot2 p {
+      margin-bottom: 45px;
     }
-
   </style>
 
 </head>
 
 <body>
 
-<div id='Intro'>
-  <h1>Spotify</h1>
-  <h2>Spotify</h2>
-</div>
+  <div id='Intro'>
+    <h1>Spotify</h1>
+    <h2>Spotify</h2>
+  </div>
 
   <div id="mapContainer">
-  <div id="map"></div>
-  <div id="mapText">
-    <h2>
-      spotify
-    </h2>
+    <div id="map"></div>
+    <div id="mapText">
+      <h2>
+        spotify
+      </h2>
+    </div>
+    <!-- create div for color legend -->
+    <div id="legend">
+      <div class="legend1">
+        <p class="happiness"><span class="key-dot first"></span>Highest</p>
+      </div>
+      <div class="legend1">
+        <p class="happiness"><span class="key-dot second"></span></p>
+      </div>
+      <div class="legend1">
+        <p class="happiness"><span class="key-dot third"></span></p>
+      </div>
+      <div class="legend1">
+        <p class="happiness"><span class="key-dot forth"></span></p>
+      </div>
+      <div class="legend1">
+        <p class="happiness"><span class="key-dot fifth"></span></p>
+      </div>
+      <div class="legend1">
+        <p class="happiness"><span class="key-dot sixth"></span></p>
+      </div>
+      <div class="legend1">
+        <p class="happiness"><span class="key-dot seventh"></span>Lowest</p>
+      </div>
+    </div>
+
+    <div id="map"></div>
+
   </div>
-  <!-- create div for color legend -->
-  <div id="legend" >
-    <div class="legend1"> <p class="happiness"><span class="key-dot first"></span>Highest</p> </div>
-    <div class="legend1"> <p class="happiness"><span class="key-dot second"></span></p> </div>
-    <div class="legend1"> <p class="happiness"><span class="key-dot third"></span></p> </div>
-    <div class="legend1"> <p class="happiness"><span class="key-dot forth"></span></p> </div>
-    <div class="legend1"> <p class="happiness"><span class="key-dot fifth"></span></p> </div>
-    <div class="legend1"> <p class="happiness"><span class="key-dot sixth"></span></p> </div>
-    <div class="legend1"> <p class="happiness"><span class="key-dot seventh"></span>Lowest</p> </div>
+
+  <div class='slider-container'>
+    <input type="range" min="1" max="12" value="1" class="slider" step='1'>
+    <ul class='slider-labels'>
+      <li>Jan</li>
+      <li>Feb</li>
+      <li>Mar</li>
+      <li>Apr</li>
+      <li>May</li>
+      <li>Jun</li>
+      <li>Jul</li>
+      <li>Aug</li>
+      <li>Sept</li>
+      <li>Oct</li>
+      <li>Nov</li>
+      <li>Dec</li>
+    </ul>
   </div>
 
-  <div id="map"></div>
-
-  </div>
-
-
-
-
-  
   <!-- END HTML START JS -->
 
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="http://d3js.org/topojson.v1.min.js"></script>
   <script src="https://d3js.org/d3-axis.v1.min.js"></script>
-  <script src="pieGraphs.js"></script>
   <script>
     var width = 962,
-        rotated = 90,
-        height = 600;
+      rotated = 90,
+      height = 600;
 
 
     var projection = d3.geoMercator()
-        .scale(125)
-        .translate([width/2.5,height/1.4]);
+      .scale(125)
+      .translate([width / 2.5, height / 1.4]);
 
 
     var svg = d3.select("#map").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("class", "mapSVG");
+      .attr("width", width)
+      .attr("height", height)
+      .attr("class", "mapSVG");
 
     var path = d3.geoPath()
-        .projection(projection);
+      .projection(projection);
 
     //color scale
     var color = d3.scaleQuantile()
-    .domain([2, 3.8, 5.1, 5.5, 6, 7, 8])
-    .range(['#ffffff','#e7edf1','#cdd9f1','#b0c6f4','#90b3f7','#69a2fb','#1e90ff']);
+      .domain([2, 3.8, 5.1, 5.5, 6, 7, 8])
+      .range(['#ffffff', '#e7edf1', '#cdd9f1', '#b0c6f4', '#90b3f7', '#69a2fb', '#1e90ff']);
     // .range(["#FFFFFF", "#FFFBE6", "#FFF5B5", "#FFEC6C", "#FFE00A"]);
 
     var g = svg.append("g");
@@ -329,48 +402,45 @@
     // VAR TO SAVE HAPPY DATA
     let happyData;
     //HAPPINESS DATA READ IN
-     d3.json("https://api.myjson.com/bins/17zlm6").then( function(data) {
+    d3.json("https://api.myjson.com/bins/17zlm6").then(function (data) {
 
-        // PROMISE FOR COUNTREIS AND FILL
-          d3.json("combined2.json").then( function(world) {
+      // PROMISE FOR COUNTREIS AND FILL
+      d3.json("combined2.json").then(function (world) {
 
-          happyData = data;
-          var happyCountryName;
-          var happyScore;
-          var savedColor;
-          // console.log(happyData);
-          //countries
-          g.append("g")
-              .attr("class", "boundary")
-              .selectAll("boundary")
-              .data(topojson.feature(world, world.objects.countries).features)
-              .enter().append("path")
-              .attr("name", function(d) {return d.properties.name;})
-              .attr("id", function(d) { return d.id;})
-              // .on('click', selected)
-              .style("fill", function(d){
-                var countryName = d.properties.name;
-                happyData.forEach(object => {
-                  happyCountryName = object["Country"];
-                  if (countryName == happyCountryName){
-                    happyScore = object["Happiness.Score"];
-                  };
-                });
-                savedColor = color(happyScore);
-                return savedColor
-              })
-              .attr("d", path);
-        });
-        function selected() {
-          d3.select('.selected').classed('selected', false);
-          d3.select(this).classed('selected', true);
-        };
-
+        happyData = data;
+        var happyCountryName;
+        var happyScore;
+        var savedColor;
+        // console.log(happyData);
+        //countries
+        g.append("g")
+          .attr("class", "boundary")
+          .selectAll("boundary")
+          .data(topojson.feature(world, world.objects.countries).features)
+          .enter().append("path")
+          .attr("name", function (d) { return d.properties.name; })
+          .attr("id", function (d) { return d.id; })
+          // .on('click', selected)
+          .style("fill", function (d) {
+            var countryName = d.properties.name;
+            happyData.forEach(object => {
+              happyCountryName = object["Country"];
+              if (countryName == happyCountryName) {
+                happyScore = object["Happiness.Score"];
+              };
+            });
+            savedColor = color(happyScore);
+            return savedColor
+          })
+          .attr("d", path);
       });
+      function selected() {
+        d3.select('.selected').classed('selected', false);
+        d3.select(this).classed('selected', true);
+      };
+
+    });
   </script>
-
-
-
-
 </body>
+
 </html>
