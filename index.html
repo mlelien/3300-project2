@@ -412,6 +412,8 @@
           .attr("name", function (d) { return d.properties.name; })
           .attr("id", function (d) { return d.id; })
           // .on('click', selected)
+          .on("mousemove", mouseOnPlot)
+          .on("mouseout", mouseLeavesPlot)
           .style("fill", function (d) {
             const countryID = d.id
             let color;
@@ -462,10 +464,8 @@
     var tooltipWidth = parseFloat(tooltip.style("width"));
     var tooltipHeight = parseFloat(tooltip.style("height"));
 
-    console.log("attempt");
-
-    d3.selectAll(".country").on("mousemove", mouseOnPlot);
-    d3.selectAll(".country").on("mouseout", mouseLeavesPlot);
+    // d3.selectAll(".country").on("mousemove", mouseOnPlot);
+    // d3.selectAll(".country").on("mouseout", mouseLeavesPlot);
 
     function mouseOnPlot() {
       // Move the tooltip
