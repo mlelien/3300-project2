@@ -284,6 +284,21 @@
     #plot2 p {
       margin-bottom: 45px;
     }
+
+
+  div.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 4px;
+    width: 120px;
+    height: 30px;
+    font: 12px sans-serif;
+    background: #f6fbfc;
+    border: 1px solid grey;
+    border-radius: 3px;
+    pointer-events: none;
+  }
+
   </style>
 
 </head>
@@ -383,7 +398,7 @@
 
     var g = svg.append("g");
 
-    //HAPPINESS DATA READ IN
+    //Spotify DATA READ IN
     d3.csv("./spotify.csv").then(function (spotifyData) {
       // PROMISE FOR COUNTREIS AND FILL
       d3.json("combined2.json").then(function (world) {
@@ -404,7 +419,7 @@
             spotifyData.forEach(song => {
               const { trackName, date, region2 } = song
               const monthOnly = date.split('/')[0]
-  
+
               if (region2 === countryID && monthOnly === month) {
                 if (trackName === 'Shape of You') {
                   console.log('hi');
@@ -439,6 +454,37 @@
       };
 
     });
+
+    var tooltip = d3.select("body").append("div")
+                      .attr("id", "tooltip")
+                      .attr("class", "tooltip")
+                      .style("opacity", 0);
+    var tooltipWidth = parseFloat(tooltip.style("width"));
+    var tooltipHeight = parseFloat(tooltip.style("height"));
+
+    d3.selectAll(".country").on("mousemove", mouseOnPlot);
+    d3.selectAll(".country").on("mouseout", mouseLeavesPlot);
+
+    function mouseOnPlot() {
+      // Move the tooltip
+      console.log(event);
+      tooltip.style("left", event.pageX - (tooltipWidth/2.0));
+      tooltip.style("top", event.pageY - tooltipHeight - 24);
+
+      // Clear whatever is there
+      tooltip.html("");
+
+      // Give the tooltip a country label
+      let country = d3.select(this);
+      tooltip.append("div").text(idToCountry[country.attr("ident")]);
+
+      // Show the tooltip!
+      tooltip.style("opacity",1);
+    }
+    function mouseLeavesPlot() {
+      tooltip.style("opacity",0);
+    }
+
   </script>
 </body>
 
