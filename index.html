@@ -385,11 +385,11 @@
 
     //HAPPINESS DATA READ IN
     d3.csv("./spotify.csv").then(function (spotifyData) {
-      console.log('hi');
       // PROMISE FOR COUNTREIS AND FILL
       d3.json("combined2.json").then(function (world) {
-        //countries
-        g.append("g")
+
+        const changeCountryColor = (month) => {
+          g.append("g")
           .attr("class", "boundary")
           .selectAll("boundary")
           .data(topojson.feature(world, world.objects.countries).features)
@@ -398,20 +398,40 @@
           .attr("id", function (d) { return d.id; })
           // .on('click', selected)
           .style("fill", function (d) {
-            const countryName = d.properties.name;
             const countryID = d.id
-            console.log(countryName + ' ' + countryID);
-            // happyData.forEach(object => {
-            //   happyCountryName = object["Country"];
-            //   if (countryName == happyCountryName) {
-            //     happyScore = object["Happiness.Score"];
-            //   };
-            // });
-            // savedColor = color(happyScore);
-            // return savedColor
-            return d3.rgb(50, 50, 100)
+            let color;
+
+            spotifyData.forEach(song => {
+              const { trackName, date, region2 } = song
+              const monthOnly = date.split('/')[0]
+  
+              if (region2 === countryID && monthOnly === month) {
+                if (trackName === 'Shape of You') {
+                  console.log('hi');
+                  color = d3.rgb('#EC6967')
+                }
+                else if (trackName === 'Despacito - Remix') color = d3.rgb('#F4B1B2')
+                else if (trackName === 'Despacito (Featuring Daddy Yankee)') color = d3.rgb('#EC6967')
+                else if (trackName === 'Rockstar') color = d3.rgb('#FED19B')
+                else if (trackName === 'Mi Gente') color = d3.rgb('#78BD70')
+                else if (trackName === 'Felices los 4') color = d3.rgb('#C9E8AC')
+                else if (trackName === 'Look What You Made Me Do') color = d3.rgb('#69A2CB')
+                else if (trackName === 'Criminal') color = d3.rgb('#C0DCE8')
+                else if (trackName === 'Something Just Like This') color = d3.rgb('#987284')
+                else if (trackName === 'Me RehÃºso') color = d3.rgb('#D8C8E0')
+              }
+            });
+
+            return color
           })
           .attr("d", path);
+        }
+
+        d3.select('.slider').on('input', function () {
+          changeCountryColor(this.value)
+        })
+
+        changeCountryColor(1)
       });
       function selected() {
         d3.select('.selected').classed('selected', false);
