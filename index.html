@@ -462,6 +462,8 @@
     var tooltipWidth = parseFloat(tooltip.style("width"));
     var tooltipHeight = parseFloat(tooltip.style("height"));
 
+    console.log("attempt");
+
     d3.selectAll(".country").on("mousemove", mouseOnPlot);
     d3.selectAll(".country").on("mouseout", mouseLeavesPlot);
 
