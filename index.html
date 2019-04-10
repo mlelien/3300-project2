@@ -377,7 +377,6 @@
       rotated = 90,
       height = 600;
 
-
     var projection = d3.geoMercator()
       .scale(125)
       .translate([width / 2.5, height / 1.4]);
@@ -399,19 +398,11 @@
 
     var g = svg.append("g");
 
-    // VAR TO SAVE HAPPY DATA
-    let happyData;
     //HAPPINESS DATA READ IN
-    d3.json("https://api.myjson.com/bins/17zlm6").then(function (data) {
-
+    d3.csv("./spotify.csv").then(function (spotifyData) {
+      console.log('hi');
       // PROMISE FOR COUNTREIS AND FILL
       d3.json("combined2.json").then(function (world) {
-
-        happyData = data;
-        var happyCountryName;
-        var happyScore;
-        var savedColor;
-        // console.log(happyData);
         //countries
         g.append("g")
           .attr("class", "boundary")
@@ -422,15 +413,18 @@
           .attr("id", function (d) { return d.id; })
           // .on('click', selected)
           .style("fill", function (d) {
-            var countryName = d.properties.name;
-            happyData.forEach(object => {
-              happyCountryName = object["Country"];
-              if (countryName == happyCountryName) {
-                happyScore = object["Happiness.Score"];
-              };
-            });
-            savedColor = color(happyScore);
-            return savedColor
+            const countryName = d.properties.name;
+            const countryID = d.id
+            console.log(countryName + ' ' + countryID);
+            // happyData.forEach(object => {
+            //   happyCountryName = object["Country"];
+            //   if (countryName == happyCountryName) {
+            //     happyScore = object["Happiness.Score"];
+            //   };
+            // });
+            // savedColor = color(happyScore);
+            // return savedColor
+            return d3.rgb(50, 50, 100)
           })
           .attr("d", path);
       });
