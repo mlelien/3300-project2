@@ -500,9 +500,23 @@ input[type=range]:focus::-ms-fill-upper {
 
           return data
         }
-      const spotifyData = addMoreData()
+      const spotifyData = addMoreData();
 
-      // PROMISE FOR COUNTREIS AND FILL
+      // let countryCounts = {};
+      // let idToState = {};
+      // stateIDs.forEach( row => {
+      //   stateCounts[row.name] = 0;
+      //   idToState[row.id] = row.name;
+      // });
+      // surveyData.forEach( row => {
+      //   let splitRow = row.Boxes.split(", ");
+      //   splitRow.forEach( state => {
+      //     stateCounts[state] += 1;
+      //   });
+      // });
+
+console.log(stateCounts);
+      // PROMISE FOR COUNTRIES AND FILL
       d3.json("combined2.json").then(function (world) {
         const changeCountryColor = (sliderValue) => {
           svg.selectAll('path')
@@ -568,7 +582,7 @@ input[type=range]:focus::-ms-fill-upper {
 
       // Give the tooltip a country label
       let country = d3.select(this);
-      //tooltip.append("div").text(idToCountry[country.attr("ident")]);
+      // tooltip.append("div").text(idToCountry[country.attr("ident")]);
 
       // Show the tooltip!
       tooltip.style("opacity",1);
