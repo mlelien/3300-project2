@@ -515,7 +515,7 @@ input[type=range]:focus::-ms-fill-upper {
       //   });
       // });
 
-console.log(stateCounts);
+// console.log(stateCounts);
       // PROMISE FOR COUNTRIES AND FILL
       d3.json("combined2.json").then(function (world) {
         const changeCountryColor = (sliderValue) => {
@@ -551,6 +551,8 @@ console.log(stateCounts);
             .text(spotifyData[this.value][0]['date'])
         })
 
+        svg.selectAll('path')
+
         changeCountryColor(1)
         d3.selectAll('.date')
             .text(spotifyData[0][0]['date'])
@@ -582,7 +584,8 @@ console.log(stateCounts);
 
       // Give the tooltip a country label
       let country = d3.select(this);
-      // tooltip.append("div").text(idToCountry[country.attr("ident")]);
+      const name = country.attr('name');
+      tooltip.append("div").text(name);
 
       // Show the tooltip!
       tooltip.style("opacity",1);
