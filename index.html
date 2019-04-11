@@ -502,20 +502,6 @@ input[type=range]:focus::-ms-fill-upper {
         }
       const spotifyData = addMoreData();
 
-      // let countryCounts = {};
-      // let idToState = {};
-      // stateIDs.forEach( row => {
-      //   stateCounts[row.name] = 0;
-      //   idToState[row.id] = row.name;
-      // });
-      // surveyData.forEach( row => {
-      //   let splitRow = row.Boxes.split(", ");
-      //   splitRow.forEach( state => {
-      //     stateCounts[state] += 1;
-      //   });
-      // });
-
-// console.log(stateCounts);
       // PROMISE FOR COUNTRIES AND FILL
       d3.json("combined2.json").then(function (world) {
         const changeCountryColor = (sliderValue) => {
@@ -567,9 +553,6 @@ input[type=range]:focus::-ms-fill-upper {
     var tooltipWidth = parseFloat(tooltip.style("width"));
     var tooltipHeight = parseFloat(tooltip.style("height"));
 
-    // d3.selectAll(".country").on("mousemove", mouseOnPlot);
-    // d3.selectAll(".country").on("mouseout", mouseLeavesPlot);
-
     function mouseOnPlot() {
       // Move the tooltip
       //console.log(event);
@@ -584,8 +567,11 @@ input[type=range]:focus::-ms-fill-upper {
 
       // Give the tooltip a country label
       let country = d3.select(this);
-      const name = country.attr('name');
-      tooltip.append("div").text(name);
+      console.log(country);
+      const countryName = country.attr('name');
+      const countrySong = country.attr('song');
+      console.log(countrySong);
+      tooltip.append("div").text(countryName);
 
       // Show the tooltip!
       tooltip.style("opacity",1);
