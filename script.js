@@ -110,10 +110,19 @@ window.onload = () => {
       return data
     }
     const spotifyData = addMoreData();
-    console.log(spotifyData);
 
     // PROMISE FOR COUNTRIES AND FILL
     d3.json("combined2.json").then(function (world) {
+      const drawMap = () => {
+        svg.selectAll('path')
+          .data(topojson.feature(world, world.objects.countries).features)
+          .enter().append("path")
+          .on("mousemove", mouseOnPlot)
+          .on("mouseout", mouseLeavesPlot)
+          .attr("name", function (d) { return d.properties.name; })
+          .attr("id", function (d) { return d.id; })
+      }
+
       const changeCountryColor = (sliderValue) => {
         svg.selectAll('path')
         .attr('song', d => {
@@ -150,28 +159,23 @@ window.onload = () => {
         .attr("d", path);
       }
 
-      svg.selectAll('path')
-        .data(topojson.feature(world, world.objects.countries).features)
-        .enter().append("path")
-        .on("mousemove", mouseOnPlot)
-        .on("mouseout", mouseLeavesPlot)
-        .on('click', countryClicked)
-        .attr("name", function (d) { return d.properties.name; })
-        .attr("id", function (d) { return d.id; })
+      const setDate = day => {
+        d3.select('.date').text(spotifyData[day][0]['date'])
+      }
 
-      d3.select('.slider').on('input', function () {
-        changeCountryColor(this.value)
-        
-        d3.selectAll('.date').text(spotifyData[this.value][0]['date'])
-      })
+      const setUpSlider = () => {
+        d3.select('.slider').on('input', function () {
+          changeCountryColor(this.value)
+          setDate(this.value)
+        })
+      }
 
+      drawMap()
       changeCountryColor(1)
-      d3.selectAll('.date')
-          .text(spotifyData[0][0]['date'])
+      setDate(0)
+      setUpSlider()
     });
   });
-
-  let clicked = false
 
   var tooltip = d3.select("#mapContainer")
                   .append("div")
@@ -181,56 +185,43 @@ window.onload = () => {
 
   function mouseOnPlot() {
     // Move the tooltip
-    if (!clicked) {
-      const x = (event.clientX) + 'px'
-      const y = (event.clientY) + 'px'
-      tooltip.style("left", x);
-      tooltip.style("top", y);
+    const x = (event.clientX) + 'px'
+    const y = (event.clientY) + 'px'
+    tooltip.style("left", x);
+    tooltip.style("top", y);
 
-      // Clear whatever is there
-      tooltip.html("");
+    // Clear whatever is there
+    tooltip.html("");
 
-      // Give the tooltip a country labels
-      let country = d3.select(this);
+    // Give the tooltip a country labels
+    let country = d3.select(this);
 
-      const countryName = country.attr('name');
+    const countryName = country.attr('name');
 
-      tooltip.append("div").text(countryName)
+    tooltip.append("div").text(countryName)
 
-      let song = d3.select(this);
-      const countrySong = song.attr('song');
-      tooltip.append("div").text(countrySong);
+    let song = d3.select(this);
+    const countrySong = song.attr('song');
+    tooltip.append("div").text(countrySong);
 
-      let artist = d3.select(this);
-      const countryArtist = artist.attr('artist');
-      tooltip.append("div").text(countryArtist);
+    let artist = d3.select(this);
+    const countryArtist = artist.attr('artist');
+    tooltip.append("div").text(countryArtist);
 
-      const spotifyFrame = document.createElement('iframe')
-      spotifyFrame.src = 'https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3'
-      //document.body.append(spotifyFrame)  
-      //document.getElementById('tooltip').appendChild(spotifyFrame)
+    const spotifyFrame = document.createElement('iframe')
+    spotifyFrame.src = 'https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3'
+    //document.body.append(spotifyFrame)  
+    //document.getElementById('tooltip').appendChild(spotifyFrame)
 
-      const aTag = document.createElement('a')
-      aTag.setAttribute('href', 'google.com')
-      aTag.innerHTML = 'link text'
-      document.getElementById('tooltip').appendChild(aTag)
+    // tooltip.append('foreignObject')
+    //   .append('iframe')
+    //   .attr('src', 'https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3')
 
-      // tooltip.append('foreignObject')
-      //   .append('iframe')
-      //   .attr('src', 'https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3')
-
-      // Show the tooltip!
-      tooltip.style("opacity",1);
-    }
+    // Show the tooltip!
+    tooltip.style("opacity",1);
   }
 
   function mouseLeavesPlot() {
-    if (!clicked)
-      tooltip.style("opacity",0);
-  }
-
-  function countryClicked() {
-    clicked = true
-    tooltip.style('opacity', 1)
+    tooltip.style("opacity",0);
   }
 }
