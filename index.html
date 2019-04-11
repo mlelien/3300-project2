@@ -60,6 +60,16 @@
       padding-bottom: 30px;
     }
 
+    .date {
+      margin: 0;
+      position: relative;
+      text-align: left;
+      color: white;
+      font-weight: bold;
+      padding-left: 1%;
+      padding-top: 1%;
+    }
+
     em {
       font-style: normal;
       font-weight: bolder;
@@ -316,6 +326,7 @@
   </div>
 
   <div id="mapContainer">
+    <p class="date"></p>
     <div id="map"></div>
     <div id="mapText">
       <h2>
@@ -526,9 +537,13 @@
 
         d3.select('.slider').on('input', function () {
           changeCountryColor(this.value)
+          d3.selectAll('.date')
+            .text(spotifyData[this.value][0]['date'])
         })
 
         changeCountryColor(1)
+        d3.selectAll('.date')
+            .text(spotifyData[0][0]['date'])
       });
     });
 
