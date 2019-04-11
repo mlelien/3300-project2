@@ -24,6 +24,11 @@
       width: 102%;
     }
 
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
     body {
       font-family: 'Avenir Next';
       background-color: white;
@@ -390,18 +395,83 @@
     var path = d3.geoPath()
       .projection(projection);
 
-    //color scale
-    var color = d3.scaleQuantile()
-      .domain([2, 3.8, 5.1, 5.5, 6, 7, 8])
-      .range(['#ffffff', '#e7edf1', '#cdd9f1', '#b0c6f4', '#90b3f7', '#69a2fb', '#1e90ff']);
-    // .range(["#FFFFFF", "#FFFBE6", "#FFF5B5", "#FFEC6C", "#FFE00A"]);
-
     var g = svg.append("g");
 
     //Spotify DATA READ IN
     d3.csv("./spotify.csv").then(function (spotifyData) {
       // PROMISE FOR COUNTREIS AND FILL
       d3.json("combined2.json").then(function (world) {
+
+        const addRegion2 = () => {
+      const data = []
+
+      spotifyData.forEach(song => {
+          
+          const { region } = song
+          let region2
+
+          if (region === 'ar') region2 = 'ARG'
+          else if (region === 'at') region2 = 'AUT'
+          else if (region === 'au') region2 = 'AUS'
+          else if (region === 'be') region2 = 'BEL'
+          else if (region === 'bo') region2 = 'BOL'
+          else if (region === 'br') region2 = 'BRA'
+          else if (region === 'ca') region2 = 'CAN'
+          else if (region === 'ch') region2 = 'CHE'
+          else if (region === 'cl') region2 = 'CHL'
+          else if (region === 'co') region2 = 'COL'
+          else if (region === 'cr') region2 = 'CRI'
+          else if (region === 'cz') region2 = 'CZE'
+          else if (region === 'cz') region2 = 'CZE'
+          else if (region === 'de') region2 = 'DEU'
+          else if (region === 'dk') region2 = 'DNK'
+          else if (region === 'do') region2 = 'DMA'
+          else if (region === 'ec') region2 = 'ECU'
+          else if (region === 'ee') region2 = 'ETH'
+          else if (region === 'es') region2 = 'ESP'
+          else if (region === 'fi') region2 = 'FIN'
+          else if (region === 'fr') region2 = 'FRA'
+          else if (region === 'gb') region2 = 'GBR'
+          else if (region === 'gr') region2 = 'GRC'
+          else if (region === 'gt') region2 = 'GTM'
+          else if (region === 'hk') region2 = 'HKG'
+          else if (region === 'hn') region2 = 'HND'
+          else if (region === 'hu') region2 = 'HUN'
+          else if (region === 'id') region2 = 'IDN'
+          else if (region === 'ie') region2 = 'IRL'
+          else if (region === 'is') region2 = 'ISL'
+          else if (region === 'it') region2 = 'ITA'
+          else if (region === 'jp') region2 = 'JPN'
+          else if (region === 'lt') region2 = 'LTU'
+          else if (region === 'lu') region2 = 'LUX'
+          else if (region === 'lv') region2 = 'LVA'
+          else if (region === 'mx') region2 = 'MEX'
+          else if (region === 'my') region2 = 'MYS'
+          else if (region === 'nl') region2 = 'NLD'
+          else if (region === 'no') region2 = 'NOR'
+          else if (region === 'nz') region2 = 'NZL'
+          else if (region === 'pa') region2 = 'PAN'
+          else if (region === 'pe') region2 = 'PER'
+          else if (region === 'ph') region2 = 'PHL'
+          else if (region === 'pl') region2 = 'POL'
+          else if (region === 'pt') region2 = 'PR1'
+          else if (region === 'py') region2 = 'PRY'
+          else if (region === 'se') region2 = 'SWE'
+          else if (region === 'sk') region2 = 'SVK'
+          else if (region === 'sv') region2 = 'SLV'
+          else if (region === 'tr') region2 = 'TUR'
+          else if (region === 'tw') region2 = 'TWN'
+          else if (region === 'us') region2 = 'USA'
+          else if (region === 'uy') region2 = 'URY'
+
+          data.push({
+            ...song,
+            region2
+          })
+        });
+      
+      return data
+    }
 
         const changeCountryColor = (month) => {
           g.append("g")
@@ -416,6 +486,9 @@
           .on("mouseout", mouseLeavesPlot)
           .style("fill", function (d) {
             const countryID = d.id
+            const countryName = d.properties.name;
+
+            //console.log(countryName + ' ' + countryID);
             let color;
 
             spotifyData.forEach(song => {
@@ -423,10 +496,7 @@
               const monthOnly = date.split('/')[0]
 
               if (region2 === countryID && monthOnly === month) {
-                if (trackName === 'Shape of You') {
-                  console.log('hi');
-                  color = d3.rgb('#EC6967')
-                }
+                if (trackName === 'Shape of You') color = d3.rgb('#EC6967')
                 else if (trackName === 'Despacito - Remix') color = d3.rgb('#F4B1B2')
                 else if (trackName === 'Starboy') color = d3.rgb('#FFA764')
                 else if (trackName === 'Rockstar') color = d3.rgb('#FED19B')
@@ -448,6 +518,7 @@
           changeCountryColor(this.value)
         })
 
+        addRegion2()
         changeCountryColor(1)
       });
       function selected() {
