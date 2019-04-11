@@ -355,7 +355,8 @@
   </div>
 
   <div class='slider-container'>
-    <input type="range" min="1" max="12" value="1" class="slider" step='1'>
+    <!-- <input type="range" min="0" max="47" value="0" class="slider" step='1'> -->
+    <input type="range" min="0" max="364" value="0" class="slider" step='1'>
     <ul class='slider-labels'>
       <li>Jan</li>
       <li>Feb</li>
@@ -398,6 +399,7 @@
     var g = svg.append("g");
 
     //Spotify DATA READ IN
+<<<<<<< HEAD
     d3.csv("./spotify.csv").then(function (spotifyData) {
       // PROMISE FOR COUNTREIS AND FILL
       d3.json("combined2.json").then(function (world) {
@@ -472,60 +474,139 @@
 
       return data
     }
+=======
+    d3.csv("./Book500.csv").then(function (tempData) {
+      const addMoreData = () => {
+          if (tempData[0].region2 !== undefined) return
+          const data = []
+          let lastDate = null
+          let index = -1
 
-        const changeCountryColor = (month) => {
-          g.append("g")
-          .attr("class", "boundary")
-          .selectAll("boundary")
-          .data(topojson.feature(world, world.objects.countries).features)
-          .enter().append("path")
-          .attr("name", function (d) { return d.properties.name; })
-          .attr("id", function (d) { return d.id; })
-          // .on('click', selected)
+          tempData.forEach(song => {
+            const { region, trackName, date } = song
+            let region2, color
+
+            if (trackName === 'Shape of You') color = '#EC6967'
+            else if (trackName === 'Despacito - Remix') color ='#F4B1B2'
+            else if (trackName === 'Starboy') color = '#FFA764'
+            else if (trackName === 'Rockstar') color = '#FED19B'
+            else if (trackName === 'Mi Gente') color = '#78BD70'
+            else if (trackName === 'Felices los 4') color = '#C9E8AC'
+            else if (trackName === 'Look What You Made Me Do') color = '#69A2CB'
+            else if (trackName === 'Criminal') color = '#C0DCE8'
+            else if (trackName === 'Something Just Like This') color = '#987284'
+            else if (trackName === 'Me RehÃºso') color = '#D8C8E0'
+
+            if (region === 'ar') region2 = 'ARG'
+            else if (region === 'at') region2 = 'AUT'
+            else if (region === 'au') region2 = 'AUS'
+            else if (region === 'be') region2 = 'BEL'
+            else if (region === 'bo') region2 = 'BOL'
+            else if (region === 'br') region2 = 'BRA'
+            else if (region === 'ca') region2 = 'CAN'
+            else if (region === 'ch') region2 = 'CHE'
+            else if (region === 'cl') region2 = 'CHL'
+            else if (region === 'co') region2 = 'COL'
+            else if (region === 'cr') region2 = 'CRI'
+            else if (region === 'cz') region2 = 'CZE'
+            else if (region === 'cz') region2 = 'CZE'
+            else if (region === 'de') region2 = 'DEU'
+            else if (region === 'dk') region2 = 'DNK'
+            else if (region === 'do') region2 = 'DMA'
+            else if (region === 'ec') region2 = 'ECU'
+            else if (region === 'ee') region2 = 'ETH'
+            else if (region === 'es') region2 = 'ESP'
+            else if (region === 'fi') region2 = 'FIN'
+            else if (region === 'fr') region2 = 'FRA'
+            else if (region === 'gb') region2 = 'GBR'
+            else if (region === 'gr') region2 = 'GRC'
+            else if (region === 'gt') region2 = 'GTM'
+            else if (region === 'hk') region2 = 'HKG'
+            else if (region === 'hn') region2 = 'HND'
+            else if (region === 'hu') region2 = 'HUN'
+            else if (region === 'id') region2 = 'IDN'
+            else if (region === 'ie') region2 = 'IRL'
+            else if (region === 'is') region2 = 'ISL'
+            else if (region === 'it') region2 = 'ITA'
+            else if (region === 'jp') region2 = 'JPN'
+            else if (region === 'lt') region2 = 'LTU'
+            else if (region === 'lu') region2 = 'LUX'
+            else if (region === 'lv') region2 = 'LVA'
+            else if (region === 'mx') region2 = 'MEX'
+            else if (region === 'my') region2 = 'MYS'
+            else if (region === 'nl') region2 = 'NLD'
+            else if (region === 'no') region2 = 'NOR'
+            else if (region === 'nz') region2 = 'NZL'
+            else if (region === 'pa') region2 = 'PAN'
+            else if (region === 'pe') region2 = 'PER'
+            else if (region === 'ph') region2 = 'PHL'
+            else if (region === 'pl') region2 = 'POL'
+            else if (region === 'pt') region2 = 'PR1'
+            else if (region === 'py') region2 = 'PRY'
+            else if (region === 'se') region2 = 'SWE'
+            else if (region === 'sk') region2 = 'SVK'
+            else if (region === 'sv') region2 = 'SLV'
+            else if (region === 'tr') region2 = 'TUR'
+            else if (region === 'tw') region2 = 'TWN'
+            else if (region === 'us') region2 = 'USA'
+            else if (region === 'uy') region2 = 'URY'
+
+            const songObj = {
+              ...song,
+                region2,
+                color
+            }
+            if (date === lastDate) {
+              const arrOfDate = data[index]
+              arrOfDate.push(songObj)
+            } else {
+                data.push([songObj])
+              index++
+            }
+
+            lastDate = date
+          });
+      
+          return data
+        }
+      const spotifyData = addMoreData()
+>>>>>>> e6efb0ea21bf1843989ab47927370ba3ca676155
+
+      // PROMISE FOR COUNTREIS AND FILL
+      d3.json("combined2.json").then(function (world) {
+        const changeCountryColor = (sliderValue) => {
+          svg.selectAll('path')
           .on("mousemove", mouseOnPlot)
           .on("mouseout", mouseLeavesPlot)
           .style("fill", function (d) {
             const countryID = d.id
-            const countryName = d.properties.name;
+            let colorReturn = d3.rgb('#000');
 
-            //console.log(countryName + ' ' + countryID);
-            let color;
+            const listSongsOnDate = spotifyData[sliderValue]
 
-            spotifyData.forEach(song => {
-              const { trackName, date, region2 } = song
-              const monthOnly = date.split('/')[0]
-
-              if (region2 === countryID && monthOnly === month) {
-                if (trackName === 'Shape of You') color = d3.rgb('#EC6967')
-                else if (trackName === 'Despacito - Remix') color = d3.rgb('#F4B1B2')
-                else if (trackName === 'Starboy') color = d3.rgb('#FFA764')
-                else if (trackName === 'Rockstar') color = d3.rgb('#FED19B')
-                else if (trackName === 'Mi Gente') color = d3.rgb('#78BD70')
-                else if (trackName === 'Felices los 4') color = d3.rgb('#C9E8AC')
-                else if (trackName === 'Look What You Made Me Do') color = d3.rgb('#69A2CB')
-                else if (trackName === 'Criminal') color = d3.rgb('#C0DCE8')
-                else if (trackName === 'Something Just Like This') color = d3.rgb('#987284')
-                else if (trackName === 'Me RehÃºso') color = d3.rgb('#D8C8E0')
+            listSongsOnDate.forEach(song => {
+              if (song.region2 === countryID) {
+                colorReturn = song.color
               }
-            });
+            })
 
-            return color
+            return colorReturn
           })
           .attr("d", path);
         }
+
+        svg.selectAll('path')
+          .data(topojson.feature(world, world.objects.countries).features)
+          .enter().append("path")
+          .attr("name", function (d) { return d.properties.name; })
+          .attr("id", function (d) { return d.id; })
 
         d3.select('.slider').on('input', function () {
           changeCountryColor(this.value)
         })
 
-        addRegion2()
         changeCountryColor(1)
       });
-      function selected() {
-        d3.select('.selected').classed('selected', false);
-        d3.select(this).classed('selected', true);
-      };
-
     });
 
     var tooltip = d3.select("body").append("div")
