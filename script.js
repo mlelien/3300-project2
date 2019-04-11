@@ -208,17 +208,31 @@ window.onload = () => {
     const countryArtist = artist.attr('artist');
     tooltip.append("div").text(countryArtist);
 
-    const spotifyFrame = document.createElement('iframe')
-    spotifyFrame.src = 'https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3'
-    //document.body.append(spotifyFrame)  
-    //document.getElementById('tooltip').appendChild(spotifyFrame)
-
-    // tooltip.append('foreignObject')
-    //   .append('iframe')
-    //   .attr('src', 'https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3')
-
     // Show the tooltip!
     tooltip.style("opacity",1);
+
+    const spotifyFrame = document.getElementById('spotify')
+    if (countrySong === 'Shape of You') {
+      spotifyFrame.src = 'https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3'
+    } else if (countrySong === 'Starboy') {
+      spotifyFrame.src = 'https://open.spotify.com/embed/track/7MXVkk9YMctZqd1Srtv4MB'
+    } else if (countrySong === 'Despacito') {
+      spotifyFrame.src = 'https://open.spotify.com/embed/track/6rPO02ozF3bM7NnOV4h6s2'
+    } else if (countrySong === 'Rockstar') {
+      spotifyFrame.src = 'https://open.spotify.com/embed/track/0e7ipj03S05BNilyu5bRzt'
+    } else if (countrySong === 'Mi Gente') {
+      spotifyFrame.src = 'https://open.spotify.com/embed/track/4ipnJyDU3Lq15qBAYNqlqK'
+    } else if (countrySong === 'Felices los 4') {
+      spotifyFrame.src = 'https://open.spotify.com/embed/track/1RouRzlg8OKFeqc6LvdxmB'
+    } else if (countrySong === 'Look What You Made Me Do') {
+      spotifyFrame.src = 'https://open.spotify.com/embed/track/1JbR9RDP3ogVNEWFgNXAjh'
+    } else if (countrySong === 'Criminal') {
+      spotifyFrame.src = 'https://open.spotify.com/embed/track/6Za3190Sbw39BBC77WSS1C'
+    } else if (countrySong === 'Something Just Like This') {
+      spotifyFrame.src = 'https://open.spotify.com/embed/track/6RUKPb4LETWmmr3iAEQktW'
+    } else if (countrySong === 'Me Rehúso') {
+      spotifyFrame.src = 'https://open.spotify.com/embed/track/6De0lHrwBfPfrhorm9q1Xl'
+    }
   }
 
   function mouseLeavesPlot() {

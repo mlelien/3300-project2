@@ -25,6 +25,15 @@ h2 {
   font-weight: 400;
 }
 
+iframe {
+  position: absolute;
+  text-align: left;
+  float: right;
+  left: 68%;
+  top: 30%;
+  padding: 2%;
+}
+
 hr {
   width: 22.2%;
   border: none;
