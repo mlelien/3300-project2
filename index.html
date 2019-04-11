@@ -355,7 +355,8 @@
   </div>
 
   <div class='slider-container'>
-    <input type="range" min="0" max="47" value="0" class="slider" step='1'>
+    <!-- <input type="range" min="0" max="47" value="0" class="slider" step='1'> -->
+    <input type="range" min="0" max="364" value="0" class="slider" step='1'>
     <ul class='slider-labels'>
       <li>Jan</li>
       <li>Feb</li>
@@ -398,7 +399,7 @@
     var g = svg.append("g");
 
     //Spotify DATA READ IN
-    d3.csv("./Book7.csv").then(function (tempData) {
+    d3.csv("./Book500.csv").then(function (tempData) {
       const addMoreData = () => {
           if (tempData[0].region2 !== undefined) return
           const data = []
