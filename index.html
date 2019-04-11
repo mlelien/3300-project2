@@ -399,82 +399,6 @@
     var g = svg.append("g");
 
     //Spotify DATA READ IN
-<<<<<<< HEAD
-    d3.csv("./spotify.csv").then(function (spotifyData) {
-      // PROMISE FOR COUNTREIS AND FILL
-      d3.json("combined2.json").then(function (world) {
-
-        const addRegion2 = () => {
-      const data = []
-
-      spotifyData.forEach(song => {
-
-          const { region } = song
-          let region2
-
-          if (region === 'ar') region2 = 'ARG'
-          else if (region === 'at') region2 = 'AUT'
-          else if (region === 'au') region2 = 'AUS'
-          else if (region === 'be') region2 = 'BEL'
-          else if (region === 'bo') region2 = 'BOL'
-          else if (region === 'br') region2 = 'BRA'
-          else if (region === 'ca') region2 = 'CAN'
-          else if (region === 'ch') region2 = 'CHE'
-          else if (region === 'cl') region2 = 'CHL'
-          else if (region === 'co') region2 = 'COL'
-          else if (region === 'cr') region2 = 'CRI'
-          else if (region === 'cz') region2 = 'CZE'
-          else if (region === 'cz') region2 = 'CZE'
-          else if (region === 'de') region2 = 'DEU'
-          else if (region === 'dk') region2 = 'DNK'
-          else if (region === 'do') region2 = 'DMA'
-          else if (region === 'ec') region2 = 'ECU'
-          else if (region === 'ee') region2 = 'ETH'
-          else if (region === 'es') region2 = 'ESP'
-          else if (region === 'fi') region2 = 'FIN'
-          else if (region === 'fr') region2 = 'FRA'
-          else if (region === 'gb') region2 = 'GBR'
-          else if (region === 'gr') region2 = 'GRC'
-          else if (region === 'gt') region2 = 'GTM'
-          else if (region === 'hk') region2 = 'HKG'
-          else if (region === 'hn') region2 = 'HND'
-          else if (region === 'hu') region2 = 'HUN'
-          else if (region === 'id') region2 = 'IDN'
-          else if (region === 'ie') region2 = 'IRL'
-          else if (region === 'is') region2 = 'ISL'
-          else if (region === 'it') region2 = 'ITA'
-          else if (region === 'jp') region2 = 'JPN'
-          else if (region === 'lt') region2 = 'LTU'
-          else if (region === 'lu') region2 = 'LUX'
-          else if (region === 'lv') region2 = 'LVA'
-          else if (region === 'mx') region2 = 'MEX'
-          else if (region === 'my') region2 = 'MYS'
-          else if (region === 'nl') region2 = 'NLD'
-          else if (region === 'no') region2 = 'NOR'
-          else if (region === 'nz') region2 = 'NZL'
-          else if (region === 'pa') region2 = 'PAN'
-          else if (region === 'pe') region2 = 'PER'
-          else if (region === 'ph') region2 = 'PHL'
-          else if (region === 'pl') region2 = 'POL'
-          else if (region === 'pt') region2 = 'PR1'
-          else if (region === 'py') region2 = 'PRY'
-          else if (region === 'se') region2 = 'SWE'
-          else if (region === 'sk') region2 = 'SVK'
-          else if (region === 'sv') region2 = 'SLV'
-          else if (region === 'tr') region2 = 'TUR'
-          else if (region === 'tw') region2 = 'TWN'
-          else if (region === 'us') region2 = 'USA'
-          else if (region === 'uy') region2 = 'URY'
-
-          data.push({
-            ...song,
-            region2
-          })
-        });
-
-      return data
-    }
-=======
     d3.csv("./Book500.csv").then(function (tempData) {
       const addMoreData = () => {
           if (tempData[0].region2 !== undefined) return
@@ -566,11 +490,10 @@
 
             lastDate = date
           });
-      
+
           return data
         }
       const spotifyData = addMoreData()
->>>>>>> e6efb0ea21bf1843989ab47927370ba3ca676155
 
       // PROMISE FOR COUNTREIS AND FILL
       d3.json("combined2.json").then(function (world) {
