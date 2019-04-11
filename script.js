@@ -15,14 +15,14 @@ window.onload = () => {
     .projection(projection);
 
   //Spotify DATA READ IN
-  d3.csv("./Book500.csv").then(function (tempData) {
+  d3.csv("./Book3.csv").then(function (tempData) {
     const addMoreData = () => {
-        if (tempData[0].region2 !== undefined) return
-        const data = []
-        let lastDate = null
-        let index = -1
+      if (tempData[0].region2 !== undefined) return
+      const data = []
+      let lastDate = null
+      let index = -1
 
-        tempData.forEach(song => {
+      tempData.forEach(song => {
           const { region, trackName, date } = song
           let region2, color
 
@@ -105,29 +105,29 @@ window.onload = () => {
           }
 
           lastDate = date
-        });
+      });
 
-        return data
-      }
+      return data
+    }
     const spotifyData = addMoreData();
+    console.log(spotifyData);
 
     // PROMISE FOR COUNTRIES AND FILL
     d3.json("combined2.json").then(function (world) {
       const changeCountryColor = (sliderValue) => {
         svg.selectAll('path')
-        .on("mousemove", mouseOnPlot)
-        .on("mouseout", mouseLeavesPlot)
-        .on('click', countryClicked)
         .attr('song', d => {
           const countryID = d.id
           const listSongsOnDate = spotifyData[sliderValue]
           let trackName;
 
-          listSongsOnDate.forEach(song => {
-            if (song.region2 === countryID) {
-              trackName = song.trackName
-            }
-          })
+          if (listSongsOnDate !== undefined && listSongsOnDate[0].trackName !== null) {
+            listSongsOnDate.forEach(song => {
+              if (song.region2 === countryID) {
+                trackName = song.trackName
+              }
+            })
+          }
           
           return trackName
         })
@@ -137,11 +137,13 @@ window.onload = () => {
 
           const listSongsOnDate = spotifyData[sliderValue]
 
-          listSongsOnDate.forEach(song => {
-            if (song.region2 === countryID) {
-              colorReturn = song.color
-            }
-          })
+          if (listSongsOnDate !== undefined && listSongsOnDate[0].trackName !== null) {
+            listSongsOnDate.forEach(song => {
+              if (song.region2 === countryID) {
+                colorReturn = song.color
+              }
+            })
+          }
 
           return colorReturn
         })
@@ -151,16 +153,17 @@ window.onload = () => {
       svg.selectAll('path')
         .data(topojson.feature(world, world.objects.countries).features)
         .enter().append("path")
+        .on("mousemove", mouseOnPlot)
+        .on("mouseout", mouseLeavesPlot)
+        .on('click', countryClicked)
         .attr("name", function (d) { return d.properties.name; })
         .attr("id", function (d) { return d.id; })
 
       d3.select('.slider').on('input', function () {
         changeCountryColor(this.value)
-        d3.selectAll('.date')
-          .text(spotifyData[this.value][0]['date'])
+        
+        d3.selectAll('.date').text(spotifyData[this.value][0]['date'])
       })
-
-      svg.selectAll('path')
 
       changeCountryColor(1)
       d3.selectAll('.date')
@@ -169,11 +172,12 @@ window.onload = () => {
   });
 
   let clicked = false
+
   var tooltip = d3.select("#mapContainer")
-                    .append("div")
-                    .attr("id", "tooltip")
-                    .attr("class", "tooltip")
-                    .style("opacity", 0);
+                  .append("div")
+                  .attr("id", "tooltip")
+                  .attr("class", "tooltip")
+                  .style("opacity", 0);
 
   function mouseOnPlot() {
     // Move the tooltip
@@ -194,17 +198,22 @@ window.onload = () => {
       tooltip.append("div").text(countryName)
 
       let song = d3.select(this);
-      console.log(song);
       const countrySong = song.attr('song');
       tooltip.append("div").text(countrySong);
+
       let artist = d3.select(this);
-      console.log(artist);
       const countryArtist = artist.attr('artist');
       tooltip.append("div").text(countryArtist);
 
-      // const spotifyFrame = document.createElement('iframe')
-      // spotifyFrame.src = 'https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3'
-      // document.body.append(spotifyFrame)  
+      const spotifyFrame = document.createElement('iframe')
+      spotifyFrame.src = 'https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3'
+      //document.body.append(spotifyFrame)  
+      //document.getElementById('tooltip').appendChild(spotifyFrame)
+
+      const aTag = document.createElement('a')
+      aTag.setAttribute('href', 'google.com')
+      aTag.innerHTML = 'link text'
+      document.getElementById('tooltip').appendChild(aTag)
 
       // tooltip.append('foreignObject')
       //   .append('iframe')
@@ -214,6 +223,7 @@ window.onload = () => {
       tooltip.style("opacity",1);
     }
   }
+
   function mouseLeavesPlot() {
     if (!clicked)
       tooltip.style("opacity",0);

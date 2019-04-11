@@ -136,7 +136,6 @@ svg {
   text-align: center;
   background-color: rgb(23, 52, 77);
   color: white;
-  font-family: Avenir, Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -255,7 +254,6 @@ svg.mapSVG {
 
 
 text {
-  font-family: Avenir, Arial, Helvetica, sans-serif;
   font-size: 14px;
   stroke-opacity: 0.9;
   shape-rendering: crispEdges;
@@ -306,9 +304,8 @@ div.tooltip {
 position: absolute;
 text-align: center;
 padding: 4px;
-width: 120px;
-height: 30px;
-font: 12px sans-serif;
+/* width: 120px;
+height: 30px; */
 background: #f6fbfc;
 border: 1px solid grey;
 border-radius: 3px;
