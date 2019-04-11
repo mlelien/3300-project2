@@ -1,0 +1,40 @@
+#legend {
+  position: absolute;
+  text-align: left;
+  float: right;
+  left: 70%;
+  bottom: 5%;
+  padding: 2%;
+  background-color: rgba(255, 255, 255, 0.164);
+  color: white;
+}
+
+#legend .title {
+  margin-bottom: 4%;
+}
+
+
+.key-dot {
+  display: inline-block;
+  height: 10px;
+  margin-right: .5em;
+  width: 20px;
+}
+
+.first { background: #EC6967; align:left;}
+.second{ background: #F4B1B2;}
+.third { background: #FFA764;}
+.forth { background: #FED19B;}
+.fifth { background: #78BD70;}
+.sixth { background: #C9E8AC;}
+.seventh { background: #69A2CB;}
+.eighth { background: #C0DCE8;}
+.ninth { background: #987284;}
+.tenth { background: #D8C8E0;}
+
+.topSongs {
+  margin: 0;
+  text-align: left;
+  border: 0;
+  padding: 0;
+}

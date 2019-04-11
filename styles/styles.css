@@ -1,0 +1,158 @@
+body {
+  font-family: 'Avenir Next';
+  margin: 0px;
+  padding: 0px;
+  background-color: rgb(23, 52, 77);
+}
+
+path {
+  transition: fill .4s ease;
+}
+
+#Intro {
+  padding: 1%;
+  text-align: center;
+  color: white;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 1.0em;
+  font-weight: 400;
+}
+
+hr {
+  width: 22.2%;
+  border: none;
+  height: 1px;
+  background-color: white;
+}
+
+p {
+  font-size: 1.0em;
+  font-size: 18px;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.date {
+  margin: 0;
+  position: relative;
+  text-align: left;
+  color: white;
+  font-weight: bold;
+  padding: 0;
+  padding-left: 1%;
+  padding-top: 1%;
+}
+
+em {
+  font-style: normal;
+  font-weight: bolder;
+  padding-bottom: 50px;
+  margin-bottom: 20px;
+}
+
+#mapContainer {
+  position: relative;
+  max-width: 100%;
+  background-color: rgb(23, 52, 77);
+  padding-bottom: 10%;
+  height: 600px;
+}
+
+svg.mapSVG {
+  margin-left: 5%;
+  background-color: rgb(23, 52, 77);
+}
+
+#map {
+  /* opacity: .8; */
+  max-width: 50%;
+  position: absolute;
+
+}
+
+#mapText {
+  position: absolute;
+  text-align: center;
+  float: right;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 70%;
+  margin-right: 10%;
+  padding: 2%;
+  background-color: rgba(255, 255, 255, 0.164);
+  color: white;
+}
+
+.gridlines line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  stroke-width: 0.7;
+  shape-rendering: crispEdges;
+}
+
+
+text {
+  font-size: 14px;
+  stroke-opacity: 0.9;
+  shape-rendering: crispEdges;
+}
+
+.label {
+  font-style: italic;
+  font-size: 16px;
+}
+
+.boundary {
+  stroke: rgb(23, 52, 77);
+  stroke-width: .4px;
+}
+
+.hidden {
+  display: none;
+}
+
+#plotcontainer {
+  display: flex;
+  margin-top: 100px;
+  max-width: 1300;
+}
+
+.overrideText {
+  text-align: left;
+  font-size: 1em;
+  padding-left: 40px;
+  padding-bottom: 0px;
+}
+
+#titleText {
+  align-content: center;
+  text-align: center;
+  padding-top: 40px;
+}
+
+.flex-container {
+  display: flex;
+  max-width: 100%;
+  padding-left: 100px;
+  margin-bottom: 10%;
+}
+
+
+div.tooltip {
+position: absolute;
+text-align: center;
+padding: 4px;
+/* width: 120px;
+height: 30px; */
+background: #f6fbfc;
+border: 1px solid grey;
+border-radius: 3px;
+pointer-events: none;
+}
