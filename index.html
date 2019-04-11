@@ -25,8 +25,11 @@
     }
 
     .tooltip {
-      position: relative;
-      display: inline-block;
+      /* position: absolute;
+      display: inline-block; */
+      display:block;
+    position:fixed;
+    overflow:hidden;
     }
 
     body {
@@ -547,7 +550,8 @@
       });
     });
 
-    var tooltip = d3.select("body").append("div")
+    var tooltip = d3.select("#mapContainer")
+                      .append("div")
                       .attr("id", "tooltip")
                       .attr("class", "tooltip")
                       .style("opacity", 0);
@@ -559,9 +563,12 @@
 
     function mouseOnPlot() {
       // Move the tooltip
-      console.log(event);
-      tooltip.style("left", event.pageX - (tooltipWidth/2.0));
-      tooltip.style("top", event.pageY - tooltipHeight - 24);
+      //console.log(event);
+      console.log(event.pageX);
+      const x = (event.clientX) + 'px'
+      const y = (event.clientY) + 'px'
+      tooltip.style("left", x);
+      tooltip.style("top", y);
 
       // Clear whatever is there
       tooltip.html("");
