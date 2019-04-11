@@ -514,6 +514,19 @@ input[type=range]:focus::-ms-fill-upper {
           svg.selectAll('path')
           .on("mousemove", mouseOnPlot)
           .on("mouseout", mouseLeavesPlot)
+          .attr('song', d => {
+            const countryID = d.id
+            const listSongsOnDate = spotifyData[sliderValue]
+            let trackName;
+
+            listSongsOnDate.forEach(song => {
+              if (song.region2 === countryID) {
+                trackName = song.trackName
+              }
+            })
+            
+            return trackName
+          })
           .style("fill", function (d) {
             const countryID = d.id
             let colorReturn = d3.rgb('#000');
@@ -561,8 +574,6 @@ input[type=range]:focus::-ms-fill-upper {
 
     function mouseOnPlot() {
       // Move the tooltip
-      //console.log(event);
-      console.log(event.pageX);
       const x = (event.clientX) + 'px'
       const y = (event.clientY) + 'px'
       tooltip.style("left", x);
