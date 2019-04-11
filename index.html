@@ -326,7 +326,7 @@ input[type=range]:focus::-ms-fill-upper {
 
   <div id='Intro'>
     <h1>Spotify's Top Songs by Country</h1>
-    <h2>From January 1 2017 to January 4 2018</h2>
+    <h2>From January 1 2017 to December 31 2017</h2>
   </div>
 
   <div id="mapContainer">
@@ -555,6 +555,8 @@ input[type=range]:focus::-ms-fill-upper {
             .text(spotifyData[this.value][0]['date'])
         })
 
+        svg.selectAll('path')
+
         changeCountryColor(1)
         d3.selectAll('.date')
             .text(spotifyData[0][0]['date'])
@@ -586,7 +588,8 @@ input[type=range]:focus::-ms-fill-upper {
 
       // Give the tooltip a country label
       let country = d3.select(this);
-      // tooltip.append("div").text(idToCountry[country.attr("ident")]);
+      const name = country.attr('name');
+      tooltip.append("div").text(name);
 
       // Show the tooltip!
       tooltip.style("opacity",1);
