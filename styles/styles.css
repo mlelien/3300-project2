@@ -87,12 +87,8 @@ svg.mapSVG {
   position: absolute;
   text-align: center;
   float: right;
-  right: 19.5%;
+  right: 5%;
   border-radius:10px;
-  /* margin-top: 5%;
-  margin-bottom: 5%;
-  margin-left: 70%;
-  margin-right: 10%; */
   padding: 2%;
   background-color: rgba(255, 255, 255, 0.164);
   color: white;
@@ -105,7 +101,6 @@ svg.mapSVG {
   stroke-width: 0.7;
   shape-rendering: crispEdges;
 }
-
 
 text {
   font-size: 14px;
