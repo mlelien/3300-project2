@@ -154,15 +154,21 @@ text {
   margin-bottom: 10%;
 }
 
-
-div.tooltip {
+.tooltip {
   position: absolute;
-  text-align: center;
-  padding: 4px;
-  /* width: 120px;
-  height: 30px; */
+  text-align: left;
+  padding: 1%;
   background: #f6fbfc;
-  border: 1px solid grey;
+  border: 1px solid #CDCDCD;
   border-radius: 3px;
   pointer-events: none;
+}
+
+.tooltip-label {
+  color: gray;
+  font-size: 0.7rem;
+}
+
+.tooltip-content {
+  margin-bottom: 10%;
 }

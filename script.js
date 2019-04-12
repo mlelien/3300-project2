@@ -217,16 +217,32 @@ window.onload = () => {
     let country = d3.select(this);
 
     const countryName = country.attr('name');
+    tooltip.append("div")
+      .attr('class', 'tooltip-label')
+      .text('COUNTRY')
 
-    tooltip.append("div").text(countryName)
+    tooltip.append('div')
+      .attr('class', 'tooltip-content')
+      .text(countryName)
 
     let song = d3.select(this);
     const countrySong = song.attr('song');
-    tooltip.append("div").text(countrySong);
+    tooltip.append("div")
+      .attr('class', 'tooltip-label')
+      .text('SONG')
+
+    tooltip.append('div')
+      .attr('class', 'tooltip-content')
+      .text(countrySong);
 
     let artist = d3.select(this);
     const countryArtist = artist.attr('artist');
-    tooltip.append("div").text(countryArtist);
+    tooltip.append("div")
+      .attr('class', 'tooltip-label')
+      .text('ARTIST')
+
+    tooltip.append('div')
+      .text(countryArtist);
 
     // Show the tooltip!
     tooltip.style("opacity",1);
