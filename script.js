@@ -152,7 +152,7 @@ window.onload = () => {
               }
             })
           }
-          
+
           return artist
         })
         .style("fill", function (d) {
@@ -199,12 +199,14 @@ window.onload = () => {
                   .style("opacity", 0);
 
   var tooltipWidth = parseFloat(tooltip.style("width"));
+  console.log(tooltipWidth);
   var tooltipHeight = parseFloat(tooltip.style("height"));
+  console.log(tooltipHeight);
 
   function mouseOnPlot() {
     // Move the tooltip
-    const x = (event.pageX - (tooltipWidth/2.0));
-    const y = (event.pageY - tooltipHeight - 24);
+    const x = event.pageX - (tooltipWidth/2.0);
+    const y = event.pageY - tooltipHeight - 24;
     tooltip.style("left", x + 'px');
     tooltip.style("top", y + 'px');
 
