@@ -205,8 +205,8 @@ window.onload = () => {
 
   function mouseOnPlot() {
     // Move the tooltip
-    const x = event.pageX - (tooltipWidth/2.0);
-    const y = event.pageY - tooltipHeight - 24;
+    const x = (event.pageX - (tooltipWidth/2.0)+15);
+    const y = (event.pageY - tooltipHeight -145);
     tooltip.style("left", x + 'px');
     tooltip.style("top", y + 'px');
 
