@@ -27,7 +27,7 @@ window.onload = () => {
           let region2, color
 
           if (trackName === 'Shape of You') color = '#EC6967'
-          else if (trackName === 'Despacito - Remix') color ='#F4B1B2'
+          else if (trackName === 'Despacito') color ='#F4B1B2'
           else if (trackName === 'Starboy') color = '#FFA764'
           else if (trackName === 'Rockstar') color = '#FED19B'
           else if (trackName === 'Mi Gente') color = '#78BD70'
@@ -137,7 +137,7 @@ window.onload = () => {
               }
             })
           }
-          
+
           return trackName
         })
         .attr('artist', d => {
@@ -152,7 +152,7 @@ window.onload = () => {
               }
             })
           }
-          
+
           return artist
         })
         .style("fill", function (d) {
@@ -198,19 +198,22 @@ window.onload = () => {
                   .attr("class", "tooltip")
                   .style("opacity", 0);
 
+  var tooltipWidth = parseFloat(tooltip.style("width"));
+  console.log(tooltipWidth);
+  var tooltipHeight = parseFloat(tooltip.style("height"));
+  console.log(tooltipHeight);
+
   function mouseOnPlot() {
     // Move the tooltip
-    const introHeight = document.getElementById('Intro').clientHeight
-    const x = (event.pageX) + 'px'
-    const y = (event.pageY - introHeight) + 'px'
-    
-    tooltip.style("left", x);
-    tooltip.style("top", y);
+    const x = (event.pageX - (tooltipWidth/2.0)+15);
+    const y = (event.pageY - tooltipHeight -145);
+    tooltip.style("left", x + 'px');
+    tooltip.style("top", y + 'px');
 
     // Clear whatever is there
     tooltip.html("");
 
-    // Give the tooltip a country labels
+    // Give the tooltip a label
     let country = d3.select(this);
 
     const countryName = country.attr('name');
