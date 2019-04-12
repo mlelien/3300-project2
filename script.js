@@ -140,6 +140,21 @@ window.onload = () => {
           
           return trackName
         })
+        .attr('artist', d => {
+          const countryID = d.id
+          const listSongsOnDate = spotifyData[sliderValue]
+          let artist;
+
+          if (listSongsOnDate !== undefined && listSongsOnDate[0].artist !== null) {
+            listSongsOnDate.forEach(song => {
+              if (song.region2 === countryID) {
+                artist = song.artist
+              }
+            })
+          }
+          
+          return artist
+        })
         .style("fill", function (d) {
           const countryID = d.id
           let colorReturn = d3.rgb('#000');
