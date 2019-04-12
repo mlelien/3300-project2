@@ -27,9 +27,8 @@ h2 {
 
 iframe {
   position: absolute;
-  text-align: left;
   float: right;
-  left: 68%;
+  right: 2%;
   top: 30%;
   padding: 2%;
 }
@@ -83,18 +82,18 @@ svg.mapSVG {
   /* opacity: .8; */
   max-width: 50%;
   position: absolute;
-
 }
 
 #mapText {
   position: absolute;
   text-align: center;
   float: right;
+  right: 19.5%;
   border-radius:10px;
-  margin-top: 5%;
+  /* margin-top: 5%;
   margin-bottom: 5%;
   margin-left: 70%;
-  margin-right: 10%;
+  margin-right: 10%; */
   padding: 2%;
   background-color: rgba(255, 255, 255, 0.164);
   color: white;
