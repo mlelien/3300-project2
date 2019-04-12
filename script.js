@@ -227,22 +227,31 @@ window.onload = () => {
 
     let song = d3.select(this);
     const countrySong = song.attr('song');
-    tooltip.append("div")
+    console.log(countrySong);
+
+    if (countrySong !== null) {
+      tooltip.append("div")
       .attr('class', 'tooltip-label')
       .text('SONG')
 
-    tooltip.append('div')
-      .attr('class', 'tooltip-content')
-      .text(countrySong);
+      tooltip.append('div')
+        .attr('class', 'tooltip-content')
+        .text(countrySong);
 
-    let artist = d3.select(this);
-    const countryArtist = artist.attr('artist');
-    tooltip.append("div")
-      .attr('class', 'tooltip-label')
-      .text('ARTIST')
+      let artist = d3.select(this);
+      const countryArtist = artist.attr('artist');
+      tooltip.append("div")
+        .attr('class', 'tooltip-label')
+        .text('ARTIST')
 
-    tooltip.append('div')
-      .text(countryArtist);
+      tooltip.append('div')
+        .text(countryArtist);
+    } else {
+      tooltip.append('div')
+        .attr('class', 'tooltip-none')
+        .text('None of the top songs of 2017 was the top song for this country today.');
+    }
+   
 
     // Show the tooltip!
     tooltip.style("opacity",1);
