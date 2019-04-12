@@ -8,6 +8,7 @@
   background-color: rgba(255, 255, 255, 0.164);
   color: white;
   border-radius:10px;
+  width: 240px;
 }
 
 #legend .title {
