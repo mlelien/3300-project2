@@ -27,7 +27,7 @@ window.onload = () => {
           let region2, color
 
           if (trackName === 'Shape of You') color = '#EC6967'
-          else if (trackName === 'Despacito - Remix') color ='#F4B1B2'
+          else if (trackName === 'Despacito') color ='#F4B1B2'
           else if (trackName === 'Starboy') color = '#FFA764'
           else if (trackName === 'Rockstar') color = '#FED19B'
           else if (trackName === 'Mi Gente') color = '#78BD70'
