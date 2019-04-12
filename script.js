@@ -218,7 +218,7 @@ window.onload = () => {
 
     const countryName = country.attr('name');
 
-    tooltip.append("div").text(countryName)
+    tooltip.append("div").text(countryName);
 
     let song = d3.select(this);
     const countrySong = song.attr('song');
