@@ -51,12 +51,12 @@ p {
 .date {
   margin: 0;
   position: relative;
-  text-align: left;
+  text-align: center;
   color: white;
-  font-weight: bold;
   padding: 0;
   padding-left: 1%;
   padding-top: 1%;
+  font-size: 32px;
 }
 
 em {
@@ -80,7 +80,6 @@ svg.mapSVG {
 }
 
 #map {
-  /* opacity: .8; */
   max-width: 50%;
   position: absolute;
 
@@ -98,6 +97,7 @@ svg.mapSVG {
   padding: 2%;
   background-color: rgba(255, 255, 255, 0.164);
   color: white;
+  width: 240px;
 }
 
 .gridlines line {
@@ -159,7 +159,6 @@ text {
   text-align: left;
   padding: 1%;
   background: #f6fbfc;
-  border: 1px solid #CDCDCD;
   border-radius: 3px;
   pointer-events: none;
 }
