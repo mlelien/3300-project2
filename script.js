@@ -199,9 +199,7 @@ window.onload = () => {
                   .style("opacity", 0);
 
   var tooltipWidth = parseFloat(tooltip.style("width"));
-  console.log(tooltipWidth);
   var tooltipHeight = parseFloat(tooltip.style("height"));
-  console.log(tooltipHeight);
 
   function mouseOnPlot() {
     // Move the tooltip
