@@ -137,7 +137,7 @@ window.onload = () => {
               }
             })
           }
-          
+
           return trackName
         })
         .style("fill", function (d) {
@@ -183,17 +183,20 @@ window.onload = () => {
                   .attr("class", "tooltip")
                   .style("opacity", 0);
 
+  var tooltipWidth = parseFloat(tooltip.style("width"));
+  var tooltipHeight = parseFloat(tooltip.style("height"));
+
   function mouseOnPlot() {
     // Move the tooltip
-    const x = (event.clientX) + 'px'
-    const y = (event.clientY) + 'px'
-    tooltip.style("left", x);
-    tooltip.style("top", y);
+    const x = (event.pageX - (tooltipWidth/2.0));
+    const y = (event.pageY - tooltipHeight - 24);
+    tooltip.style("left", x + 'px');
+    tooltip.style("top", y + 'px');
 
     // Clear whatever is there
     tooltip.html("");
 
-    // Give the tooltip a country labels
+    // Give the tooltip a label
     let country = d3.select(this);
 
     const countryName = country.attr('name');
