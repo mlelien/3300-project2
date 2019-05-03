@@ -249,7 +249,7 @@ window.onload = () => {
         .attr('class', 'tooltip-none')
         .text('None of the top songs of 2017 was the top song for this country today.');
     }
-   
+
 
     // Show the tooltip!
     tooltip.style("opacity",1);
